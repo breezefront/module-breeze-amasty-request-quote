@@ -1,0 +1,98 @@
+<div class="block-title">
+    <strong>
+        <span class="text" data-bind="text: $t('My Quote')"></span>
+        <span
+            class="qty empty"
+            data-bind="css: { empty: !!getCartParam('summary_count') == false },
+                       attr: { title: $t('Items in Cart') },
+                       text: getCartParam('summary_count')">
+        </span>
+    </strong>
+</div>
+
+<div class="block-content">
+    <button type="button"
+            id="btn-quotecart-close"
+            class="action close"
+            data-action="close"
+            data-bind="attr: { title: $t('Close') }, click: closeMinicart">
+        <span data-bind="text: $t('Close')"></span>
+    </button>
+
+    <!-- ko if: (getCartParam('summary_count')) -->
+        <div class="items-total">
+            <!-- ko if: (maxItemsToDisplay < getCartLineItemsCount()) -->
+                <span class="count" data-bind="text: maxItemsToDisplay"></span>
+                <span data-bind="text: $t('of')"></span>
+            <!--/ko-->
+
+            <span class="count" data-bind="text: getCartParam('summary_count')"></span>
+
+            <!-- ko if: (getCartParam('summary_count') > 1) -->
+                <span data-bind="text: $t('Items in Cart')"></span>
+            <!--/ko-->
+            <!-- ko if: (getCartParam('summary_count') === 1) -->
+                <span data-bind="text: $t('Item in Cart')"></span>
+            <!--/ko-->
+        </div>
+
+        <div class="subtotal">
+            <span class="label">
+                <!-- ko i18n: 'Cart Subtotal' --><!-- /ko -->
+            </span>
+            <div class="amount price-container">
+                <span class="price-wrapper" data-bind="html: subTotal().subtotal"></span>
+            </div>
+        </div>
+
+        <!-- ko foreach: getRegion('extraInfo') -->
+            <!-- ko template: getTemplate() --><!-- /ko -->
+        <!-- /ko -->
+
+        <div class="actions">
+            <div class="primary">
+                <button id="top-quotecart-button"
+                        type="button"
+                        class="amquote-top-quotecart action primary"
+                        data-action="close"
+                        data-bind="
+                            attr: {
+                                title: $t('My Quote Cart')
+                            },
+                            click: closeMinicart,
+                            text: $t('My Quote Cart')
+                        ">
+                </button>
+                <div data-bind="html: getCartParamUnsanitizedHtml('extra_actions')"></div>
+            </div>
+        </div>
+
+        <strong class="subtitle" data-bind="text: $t('Recently added item(s)')"></strong>
+        <div data-action="scroll" class="minicart-items-wrapper">
+            <ol id="quote-cart" class="minicart-items" data-bind="
+                template: {
+                    name: getItemRenderer.bind($data),
+                    foreach: getCartItems(), as: 'item'
+                }
+            "></ol>
+        </div>
+    <!--/ko-->
+
+    <!-- ko ifnot: (getCartParam('summary_count')) -->
+        <strong class="subtitle empty"
+                data-bind="visible: closeSidebar(),text: $t('You have no items in your quote cart.')">
+        </strong>
+        <!-- ko if: (getCartParam('cart_empty_message')) -->
+            <p class="minicart empty text" data-bind="text: getCartParam('cart_empty_message')"></p>
+        <!--/ko-->
+    <!--/ko-->
+
+    <div id="minicart-widgets" class="minicart-widgets">
+        <!-- ko foreach: getRegion('promotion') -->
+            <!-- ko template: getTemplate() --><!-- /ko -->
+        <!-- /ko -->
+    </div>
+</div>
+<!-- ko foreach: getRegion('sign-in-popup') -->
+    <!-- ko template: getTemplate() --><!-- /ko -->
+<!-- /ko -->

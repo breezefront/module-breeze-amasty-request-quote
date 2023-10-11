@@ -1,0 +1,38 @@
+& when (@critical) {
+    .breeze-theme {
+        .amquote-cart-wrapper.minicart-wrapper {
+            margin-bottom: 0;
+
+            &.-active .block-quotecart {
+                position: static;
+            }
+        }
+
+        .amquote-addto-button {
+            width: auto;
+            margin: 0;
+            .lib-css(font-size, @font-size__base);
+            .lib-css(font-size, @button__font-size);
+            .lib-css(font-weight, @button__font-weight);
+            .lib-css(line-height, @line-height__base);
+            .lib-css(padding, @button__padding);
+        }
+
+        &.amasty_quote-cart-index .cart.actions .action {
+            flex-basis: auto;
+        }
+    }
+
+    @media @media-md {
+        .breeze-theme {
+            .form.amasty-quote-update {
+                width: ~"calc(100% - var(--sidebar-width))";
+                padding-right: 2%;
+            }
+
+            .cart.table-wrapper .col.price .control .amquotereq-input {
+                font-size: 1rem;
+            }
+        }
+    }
+}

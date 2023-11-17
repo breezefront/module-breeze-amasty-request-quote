@@ -18,7 +18,7 @@
                             </item>
 
                             <item name="Swissup_BreezeAmastyRequestQuote/js/product/catalog-add-to-cart" xsi:type="array">
-                                <item name="path" xsi:type="string">Swissup_Ajaxpro/js/breeze/catalog-add-to-cart</item>
+                                <item name="path" xsi:type="string">Swissup_BreezeAmastyRequestQuote/js/product/catalog-add-to-cart</item>
                             </item>
 
                             <item name="Amasty_RequestQuote/js/product/addtoquote" xsi:type="array">

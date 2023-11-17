@@ -17,7 +17,7 @@
             adding: $t('Adding...')
         },
 
-        submitForm: function (original, form) {
+        ajaxSubmit: function (original, form) {
             var isAddToQuote = form.attr('data-amquote-js'),
                 isLogged = form.attr('data-amquote-logged') === '1';
 
@@ -33,7 +33,7 @@
                     this.postSubmitForm(form, true);
                 }
             } else {
-                this.ajaxSubmit(form);
+                original(form);
             }
         },
 
@@ -65,7 +65,7 @@
                     }
                 },
                 success: function (data, response) {
-                    res = self.getResponseData(response);
+                    var res = self.getResponseData(response);
 
                     $(document).trigger('ajax:addToQuote', {
                         'sku': form.data().productSku,

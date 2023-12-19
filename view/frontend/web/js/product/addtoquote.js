@@ -58,7 +58,7 @@ define([
                     } else {
                         addToForm.attr('action', formUrl).attr('data-amquote-js', '');
                     }
-                    addToForm.trigger('submit');
+                    addToForm.submit();
                 }
             });
         }
